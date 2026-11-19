@@ -1,0 +1,19 @@
+<div class="container my-4">
+  <h1>Lists</h1>
+
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <% @lists.each do |list| %>
+      <% poster = list.movies.sample&.poster_url.presence || "https://placehold.co/300x450?text=No+poster" %>
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= link_to list.name, list_path(list) %>
+            </h5>
+          </div>
+          <%= image_tag poster, class: "card-img-bottom", alt: list.name %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

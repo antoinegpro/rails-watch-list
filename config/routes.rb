@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
+  get "lists/new"
+  get "movies/home"
+  resources :lists
+  resources :lists do
+    resources :bookmarks, only: [:create, :destroy]
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
+    root to: 'movies#home'
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
@@ -11,4 +17,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  get "movies", to: "movies#home"
 end
